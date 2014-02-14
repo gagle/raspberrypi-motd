@@ -7,30 +7,30 @@ function color (){
 }
 
 function extend (){
-	local str="$1"
-	let spaces=60-${#1}
-	while [ $spaces -gt 0 ]; do
-		str="$str "
-		let spaces=spaces-1
-	done
-	echo "$str"
+  local str="$1"
+  let spaces=60-${#1}
+  while [ $spaces -gt 0 ]; do
+    str="$str "
+    let spaces=spaces-1
+  done
+  echo "$str"
 }
 
 function center (){
-	local str="$1"
-	let spacesLeft=(78-${#1})/2
-	let spacesRight=78-spacesLeft-${#1}
-	while [ $spacesLeft -gt 0 ]; do
-		str=" $str"
-		let spacesLeft=spacesLeft-1
-	done
-	
-	while [ $spacesRight -gt 0 ]; do
-		str="$str "
-		let spacesRight=spacesRight-1
-	done
-	
-	echo "$str"
+  local str="$1"
+  let spacesLeft=(78-${#1})/2
+  let spacesRight=78-spacesLeft-${#1}
+  while [ $spacesLeft -gt 0 ]; do
+    str=" $str"
+    let spacesLeft=spacesLeft-1
+  done
+  
+  while [ $spacesRight -gt 0 ]; do
+    str="$str "
+    let spacesRight=spacesRight-1
+  done
+  
+  echo "$str"
 }
 
 borderColor=35
