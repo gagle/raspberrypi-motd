@@ -19,7 +19,7 @@ The following steps may vary depending on the OS.
 
 - Autoexecute the script when the user logs in. There are multiple locations from where you can start the `motd.sh` script, for example `~/.bashrc`. Append the following line:
   
-  ```
+  ```text
   echo "$(./motd.sh)"
   ```
   
@@ -39,19 +39,19 @@ The following steps may vary depending on the OS.
   
   Before:
   
-  ```
+  ```text
   #PrintLastLog yes
   ```
   
   After:
   
-  ```
+  ```text
   PrintLastLog no
   ```
   
   Restart the `sshd` service:
   
-  ```
+  ```bash
   $ sudo systemctl restart sshd
   ```
 
