@@ -7,7 +7,7 @@ motd
   <img src="https://github.com/gagle/raspberrypi-motd/blob/master/motd.png?raw=true"/>
 </p>
 
-Written in pure Bash. No need to install any package.
+Written in pure Bash. No need to install any package. Tested with the Arch Linux ARM distribution.
 
 Download and save the `motd.sh` bash script in the Raspberry Pi. Remember to add execution permissions to the file:
 
@@ -15,7 +15,7 @@ Download and save the `motd.sh` bash script in the Raspberry Pi. Remember to add
 $ sudo chmod +x motd.sh
 ```
 
-The following steps may vary depending on the OS. Tested with the Arch Linux ARM distribution.
+The following steps may vary depending on the OS.
 
 - Autoexecute the script when the user logs in. There are multiple locations from where you can start the `motd.sh` script, for example `~/.bashrc`. Append the following line:
   
