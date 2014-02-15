@@ -45,7 +45,7 @@ borderBottomLine=$(color $borderColor "┗$borderLine┛")
 borderBar=$(color $borderColor "┃")
 borderEmptyLine="$borderBar                                                                              $borderBar"
 
-# HEADER
+# Header
 header="$borderTopLine\n$borderEmptyLine\n"
 header="$header$borderBar$(color $headerLeafColor "          .~~.   .~~.                                                         ")$borderBar\n"
 header="$header$borderBar$(color $headerLeafColor "         '. \ ' ' / .'                                                        ")$borderBar\n"
@@ -58,12 +58,24 @@ header="$header$borderBar$(color $headerRaspberryColor "         (  : '~' :  )  
 header="$header$borderBar$(color $headerRaspberryColor "          '~ .~~~. ~'                                                         ")$borderBar\n"
 header="$header$borderBar$(color $headerRaspberryColor "              '~'                                                             ")$borderBar"
 
-# GREETINGS
-greetings="$borderBar$(color $greetingsColor "$(center "Welcome back, $(whoami)!")")$borderBar\n"
+me=$(whoami)
+
+# Greetings
+greetings="$borderBar$(color $greetingsColor "$(center "Welcome back, $me!")")$borderBar\n"
 greetings="$greetings$borderBar$(color $greetingsColor "$(center "$(date +"%A, %d %B %Y, %T")")")$borderBar"
 
-# SYSTEM INFORMATION
-label1="$(extend "$(lastlog -u $(whoami) | awk 'NR==2 { for (i=4;i<=NF;i++) printf "%s ",$i; printf "from %s",$3; }')")"
+# System information
+read loginDate loginIP <<< $(last $me --time-format iso -2 | awk 'NR==2 { print $4,$3 }')
+
+if [[ $loginDate == *+* ]]
+then
+  # The "date" command because it needs at least 2 logins
+  login="$(date -d $loginDate +"%A, %d %B %Y, %T") ($loginIP)"
+else
+  login="None"
+fi
+
+label1="$(extend $login)"
 label1="$borderBar  $(color $statsLabelColor "Last Login....:") $label1$borderBar"
 
 label2="$(extend "$(uptime -p | cut -d " " -f 2-) ($(uptime -s))")"
@@ -80,5 +92,5 @@ label5="$borderBar  $(color $statsLabelColor "Temperature...:") $label5$borderBa
 
 stats="$label1\n$label2\n$label3\n$label4\n$label5"
 
-# PRINT MOTD
+# Print motd
 echo -e "$header\n$borderEmptyLine\n$greetings\n$borderEmptyLine\n$stats\n$borderEmptyLine\n$borderBottomLine"       
