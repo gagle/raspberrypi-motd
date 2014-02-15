@@ -9,9 +9,10 @@ motd
 
 Written in pure Bash. No need to install any package. Tested with the Arch Linux ARM distribution.
 
-Download and save the `motd.sh` bash script in the Raspberry Pi. Remember to add execution permissions to it:
+Download and save the `motd.sh` bash script in the Raspberry Pi. Remember to add execution permissions and change the owner:
 
 ```bash
+$ sudo chown root:root motd.sh
 $ sudo chmod +x motd.sh
 ```
 
