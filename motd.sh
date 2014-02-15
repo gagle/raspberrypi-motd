@@ -69,9 +69,9 @@ read loginDate loginIP <<< $(last $me --time-format iso -2 | awk 'NR==2 { print 
 
 if [[ $loginDate == *+* ]]
 then
-  # The "date" command because it needs at least 2 logins
   login="$(date -d $loginDate +"%A, %d %B %Y, %T") ($loginIP)"
 else
+  # Not enough logins
   login="None"
 fi
 
