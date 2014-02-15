@@ -17,13 +17,7 @@ $ sudo chmod +x motd.sh
 
 The following steps may vary depending on the OS.
 
-- Autoexecute the script when the user logs in. There are multiple locations from where you can start the `motd.sh` script, for example `~/.bashrc`. Append the following line:
-  
-  ```text
-  echo "$(./motd.sh)"
-  ```
-  
-  In this case, `motd.sh` is located in the home directory.
+- Autoexecute the script when the user logs in. There are multiple locations from where you can start the `motd.sh` script, for example using the file `/etc/profile`. Save the `motd.sh` script in the directory `/etc/profile.d` and it will be executed after the login. More about [autostarting scripts](https://wiki.archlinux.org/index.php/Bash#Configuration_file_sourcing_order_at_startup).
 
 - Remove the default MOTD. In Arch Linux ARM you need to remove the `/etc/motd` file.
   
