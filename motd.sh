@@ -65,10 +65,15 @@ greetings="$borderBar$(color $greetingsColor "$(center "Welcome back, $me!")")$b
 greetings="$greetings$borderBar$(color $greetingsColor "$(center "$(date +"%A, %d %B %Y, %T")")")$borderBar"
 
 # System information
-read loginDate loginIP <<< $(last $me --time-format iso -2 | awk 'NR==2 { print $4,$3 }')
+read loginFrom loginIP loginDate <<< $(last $me --time-format iso -2 | awk 'NR==2 { print $2,$3,$4 }')
 
-if [[ $loginDate == *T* ]]
-then
+# TTY login
+if [[ $loginDate == - ]]; then
+  loginDate=$loginIP
+  loginIP=$loginFrom
+fi
+
+if [[ $loginDate == *T* ]]; then
   login="$(date -d $loginDate +"%A, %d %B %Y, %T") ($loginIP)"
 else
   # Not enough logins
