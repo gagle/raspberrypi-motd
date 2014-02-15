@@ -75,7 +75,7 @@ else
   login="None"
 fi
 
-label1="$(extend $login)"
+label1="$(extend "$login")"
 label1="$borderBar  $(color $statsLabelColor "Last Login....:") $label1$borderBar"
 
 label2="$(extend "$(uptime -p | cut -d " " -f 2-) ($(uptime -s))")"
