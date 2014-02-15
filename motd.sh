@@ -72,8 +72,8 @@ label2="$borderBar  $(color $statsLabelColor "Uptime........:") $label2$borderBa
 label3="$(extend "$(free -m | awk 'NR==2 { printf "Total: %sMB, Used: %sMB, Free: %sMB",$2,$3,$4; }')")"
 label3="$borderBar  $(color $statsLabelColor "Memory........:") $label3$borderBar"
 
-label4="$(extend "$(df -h . | awk 'NR==2 { printf "Total: %sB, Used: %sB, Free: %sB",$2,$3,$4; }')")"
-label4="$borderBar  $(color $statsLabelColor "SD Card.......:") $label4$borderBar"
+label4="$(extend "$(df -h ~ | awk 'NR==2 { printf "Total: %sB, Used: %sB, Free: %sB",$2,$3,$4; }')")"
+label4="$borderBar  $(color $statsLabelColor "Home space....:") $label4$borderBar"
 
 label5="$(extend "$(/opt/vc/bin/vcgencmd measure_temp | cut -c "6-9")ºC")"
 label5="$borderBar  $(color $statsLabelColor "Temperature...:") $label5$borderBar"
