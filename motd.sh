@@ -83,7 +83,14 @@ fi
 label1="$(extend "$login")"
 label1="$borderBar  $(color $statsLabelColor "Last Login....:") $label1$borderBar"
 
-label2="$(extend "$(uptime -p | cut -d " " -f 2-) ($(uptime -s))")"
+uptime=$(uptime -p | cut -d " " -f 2-)
+
+# Login just after boot
+if [[ -z $uptime ]]; then
+  uptime="just booted"
+fi
+
+label2="$(extend "$uptime ($(uptime -s))")"
 label2="$borderBar  $(color $statsLabelColor "Uptime........:") $label2$borderBar"
 
 label3="$(extend "$(free -m | awk 'NR==2 { printf "Total: %sMB, Used: %sMB, Free: %sMB",$2,$3,$4; }')")"
