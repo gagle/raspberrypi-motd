@@ -33,6 +33,17 @@ function center (){
   echo "$str"
 }
 
+function sec2time {
+ input=$1
+ ((days=input/86400))
+ ((input=input%86400))
+ ((hours=input/3600))
+ ((input=input%3600))
+ ((mins=input/60))
+ ((sec=input%60))
+ echo $days Days, $hours Hours, $mins Minutes, $sec Seconds
+}
+  
 borderColor=35
 headerLeafColor=32
 headerRaspberryColor=31
@@ -83,14 +94,11 @@ fi
 label1="$(extend "$login")"
 label1="$borderBar  $(color $statsLabelColor "Last Login....:") $label1$borderBar"
 
-uptime=$(uptime -p | cut -d " " -f 2-)
+# New uptime
+uptime=$(cut -d "." -f 1 /proc/uptime)
+uptime=$(sec2time $uptime)
 
-# Login just after boot
-if [[ -z $uptime ]]; then
-  uptime="just booted"
-fi
-
-label2="$(extend "$uptime ($(uptime -s))")"
+label2="$(extend "$uptime")"
 label2="$borderBar  $(color $statsLabelColor "Uptime........:") $label2$borderBar"
 
 label3="$(extend "$(free -m | awk 'NR==2 { printf "Total: %sMB, Used: %sMB, Free: %sMB",$2,$3,$4; }')")"
