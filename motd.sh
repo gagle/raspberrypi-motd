@@ -67,7 +67,7 @@ greetings="$greetings$borderBar$(color $greetingsColor "$(center "$(date +"%A, %
 # System information
 read loginDate loginIP <<< $(last $me --time-format iso -2 | awk 'NR==2 { print $4,$3 }')
 
-if [[ $loginDate == *+* ]]
+if [[ $loginDate == *T* ]]
 then
   login="$(date -d $loginDate +"%A, %d %B %Y, %T") ($loginIP)"
 else
