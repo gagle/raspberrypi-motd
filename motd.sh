@@ -33,6 +33,38 @@ function center (){
   echo "$str"
 }
 
+function sec2time (){
+  local input=$1
+  
+  if [ $input -lt 60 ]; then
+    echo "$input seconds"
+  else
+    ((days=input/86400))
+    ((input=input%86400))
+    ((hours=input/3600))
+    ((input=input%3600))
+    ((mins=input/60))
+    
+    local daysPlural="s"
+    local hoursPlural="s"
+    local minsPlural="s"
+    
+    if [ $days -eq 1 ]; then
+      daysPlural=""
+    fi
+    
+    if [ $hours -eq 1 ]; then
+      hoursPlural=""
+    fi
+    
+    if [ $mins -eq 1 ]; then
+      minsPlural=""
+    fi
+    
+    echo "$days day$daysPlural, $hours hour$hoursPlural, $mins minute$minsPlural"
+  fi
+}
+
 borderColor=35
 headerLeafColor=32
 headerRaspberryColor=31
@@ -83,14 +115,10 @@ fi
 label1="$(extend "$login")"
 label1="$borderBar  $(color $statsLabelColor "Last Login....:") $label1$borderBar"
 
-uptime=$(uptime -p | cut -d " " -f 2-)
+uptime="$(sec2time $(cut -d "." -f 1 /proc/uptime))"
+uptime="$uptime ($(date -d "@"$(grep btime /proc/stat | cut -d " " -f 2) +"%d-%m-%Y %H:%M:%S"))"
 
-# Login just after boot
-if [[ -z $uptime ]]; then
-  uptime="just booted"
-fi
-
-label2="$(extend "$uptime ($(uptime -s))")"
+label2="$(extend "$uptime")"
 label2="$borderBar  $(color $statsLabelColor "Uptime........:") $label2$borderBar"
 
 label3="$(extend "$(free -m | awk 'NR==2 { printf "Total: %sMB, Used: %sMB, Free: %sMB",$2,$3,$4; }')")"
