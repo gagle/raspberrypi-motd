@@ -16,7 +16,7 @@ $ sudo chown root:root motd.sh
 $ sudo chmod +x motd.sh
 ```
 
-The following steps may vary depending on the OS.
+The following steps may vary depending on the OS. These are using Arch Linux.
 
 - Autoexecute the script when the user logs in. There are multiple locations from where you can start the `motd.sh` script, for example using the `/etc/profile`. Save the `motd.sh` script in the directory `/etc/profile.d` and it will be executed after the login. More about [autostarting scripts](https://wiki.archlinux.org/index.php/Bash#Configuration_file_sourcing_order_at_startup).
 
