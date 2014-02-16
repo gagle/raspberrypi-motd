@@ -16,17 +16,17 @@ $ sudo chown root:root motd.sh
 $ sudo chmod +x motd.sh
 ```
 
-The following steps may vary depending on the OS. These are using Arch Linux.
+The following steps may vary depending on the OS. Arch Linux ARM is assumed.
 
 - Autoexecute the script when the user logs in. There are multiple locations from where you can start the `motd.sh` script, for example using the `/etc/profile`. Save the `motd.sh` script in the directory `/etc/profile.d` and it will be executed after the login. More about [autostarting scripts](https://wiki.archlinux.org/index.php/Bash#Configuration_file_sourcing_order_at_startup).
 
-- Remove the default MOTD. In Arch Linux ARM you need to remove the `/etc/motd` file.
+- Remove the default MOTD. It is located in `/etc/motd`.
   
   ```bash
   $ sudo rm /etc/motd
   ```
   
-- Remove the "last login" information. In Arch Linux ARM you need to disable the `PrintLastLog` option from the `sshd` service. Edit the `/etc/ssh/sshd_config` file and uncomment the line `#PrintLastLog yes`:
+- Remove the "last login" information. Disable the `PrintLastLog` option from the `sshd` service. Edit the `/etc/ssh/sshd_config` file and uncomment the line `#PrintLastLog yes`:
   
   ```bash
   $ sudo nano /etc/ssh/sshd_config
