@@ -130,7 +130,7 @@ label4="$borderBar  $(color $statsLabelColor "Home space....:") $label4$borderBa
 label5="$(extend "$(/opt/vc/bin/vcgencmd measure_temp | cut -c "6-9")ºC")"
 label5="$borderBar  $(color $statsLabelColor "Temperature...:") $label5$borderBar"
 
-label6="$(extend "$(ifconfig | grep RX | grep -v dropped | awk '{ print "Total: " "Recieved " $3,$4 "," , "Transmitted " $7,$8 }' | sed -e s/'('//g | sed -e s/')'//g | head -1)"
+label6="$(extend "$ifconfig | grep RX | grep -v dropped | awk '{ print "Total: " "Recieved " $3,$4 "," , "Transmitted " $7,$8 }' | sed -e s/'('//g | sed -e s/')'//g | head -1)"
 label6="$borderBar  $(color $statsLabelColor "Network Usage.:") $label6borderBar"
 
 stats="$label1\n$label2\n$label3\n$label4\n$label5\n$label6"
