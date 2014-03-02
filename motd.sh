@@ -133,7 +133,7 @@ label5="$borderBar  $(color $statsLabelColor "Temperature...:") $label5$borderBa
 label6="$(extend "$(ifconfig | grep RX | grep -v dropped | awk '{ print "Total: " "Recieved " $3,$4 "," , "Transmitted " $7,$8 }' | sed -e s/'('//g | sed -e s/')'//g | head -1)")"
 label6="$borderBar  $(color $statsLabelColor "Network Usage.:") $label6$borderBar"
 
-stats="$label1\n$label2\n$label3\n$label6\n$label4\n$label5\n"
+stats="$label1\n$label2\n$label3\n$label6\n$label4\n$label5"
 
 # Print motd
 echo -e "$header\n$borderEmptyLine\n$greetings\n$borderEmptyLine\n$stats\n$borderEmptyLine\n$borderBottomLine"
