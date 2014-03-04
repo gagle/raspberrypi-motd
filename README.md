@@ -4,7 +4,7 @@ motd
 #### Message of the Day for the Raspberry Pi ####
 
 <p align="center">
-  <img src="https://github.com/gagle/raspberrypi-motd/blob/master/motd.png?raw=true"/>
+  <img src="https://github.com/benjipdx/raspberrypi-motd/blob/benjipdx/motd.png?raw=true"/>
 </p>
 
 Written in pure Bash. No need to install any package. Tested with the Arch Linux ARM and Raspbian distributions.
