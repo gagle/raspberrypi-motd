@@ -24,18 +24,18 @@ function center (){
     str=" $str"
     let spacesLeft=spacesLeft-1
   done
-  
+
   while [ $spacesRight -gt 0 ]; do
     str="$str "
     let spacesRight=spacesRight-1
   done
-  
+
   echo "$str"
 }
 
 function sec2time (){
   local input=$1
-  
+
   if [ $input -lt 60 ]; then
     echo "$input seconds"
   else
@@ -44,26 +44,36 @@ function sec2time (){
     ((hours=input/3600))
     ((input=input%3600))
     ((mins=input/60))
-    
+
     local daysPlural="s"
     local hoursPlural="s"
     local minsPlural="s"
-    
+
     if [ $days -eq 1 ]; then
       daysPlural=""
     fi
-    
+
     if [ $hours -eq 1 ]; then
       hoursPlural=""
     fi
-    
+
     if [ $mins -eq 1 ]; then
       minsPlural=""
     fi
-    
+
     echo "$days day$daysPlural, $hours hour$hoursPlural, $mins minute$minsPlural"
   fi
 }
+
+
+function check-ifstatus() {
+FOUND=`grep "eth0:\|wlan0:\|wlan1:\|usb0" /proc/net/dev`
+    if  [ -n "$FOUND" ] ; then
+      label$FOUND=""
+    fi
+}
+
+
 
 borderColor=35
 headerLeafColor=32
@@ -97,7 +107,7 @@ greetings="$borderBar$(color $greetingsColor "$(center "Welcome back, $me!")")$b
 greetings="$greetings$borderBar$(color $greetingsColor "$(center "$(date +"%A, %d %B %Y, %T")")")$borderBar"
 
 # System information
-read loginFrom loginIP loginDate <<< $(last $me --time-format iso -2 | awk 'NR==2 { print $2,$3,$4 }')
+read loginFrom loginIP loginDate <<< $(last $me -2 | awk 'NR==2 { print $2,$3,$4 }')
 
 # TTY login
 if [[ $loginDate == - ]]; then
@@ -130,7 +140,25 @@ label4="$borderBar  $(color $statsLabelColor "Home space....:") $label4$borderBa
 label5="$(extend "$(/opt/vc/bin/vcgencmd measure_temp | cut -c "6-9")ºC")"
 label5="$borderBar  $(color $statsLabelColor "Temperature...:") $label5$borderBar"
 
-stats="$label1\n$label2\n$label3\n$label4\n$label5"
+labeleth0="$(extend "$(ifconfig eth0 | grep "inet ad" | cut -f2 -d: | awk '{print $1}')")"
+labeleth0="$borderBar  $(color $statsLabelColor "IP of eth0....:") $labeleth0$borderBar"
+
+labelwlan0="$(extend "$(ifconfig wlan0 | grep "inet ad" | cut -f2 -d: | awk '{print $1}')")"
+labelwlan0="$borderBar  $(color $statsLabelColor "IP of wlan0...:") $labelwlan0$borderBar"
+
+labelwlan1="$(extend "$(ifconfig wlan1 | grep "inet ad" | cut -f2 -d: | awk '{print $1}')")"
+labelwlan1="$borderBar  $(color $statsLabelColor "IP of wlan1...:") $labelwlan1$borderBar"
+
+labelusb0="$(extend "$(ifconfig usb0 | grep "inet ad" | cut -f2 -d: | awk '{print $1}')")"
+labelusb0="$borderBar  $(color $statsLabelColor "IP of usb0....:") $labelusb0$borderBar"
+
+label10="$(extend "$(wget -q -O - http://icanhazip.com/ | tail)")"
+label10="$borderBar  $(color $statsLabelColor "IP of WAN.....:") $label10$borderBar"
+
+stats="$label1\n$label2\n$label3\n$label4\n$label5\n$labeleth0\n$labelwlan0\n$labelwlan1\n$labelusb0\n$label10"
+
 
 # Print motd
-echo -e "$header\n$borderEmptyLine\n$greetings\n$borderEmptyLine\n$stats\n$borderEmptyLine\n$borderBottomLine"       
+
+#check-ifstatus
+echo -e "$header\n$borderEmptyLine\n$greetings\n$borderEmptyLine\n$stats\n$borderEmptyLine\n$borderBottomLine"
