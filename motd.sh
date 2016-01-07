@@ -107,7 +107,7 @@ greetings="$borderBar$(color $greetingsColor "$(center "Welcome back, $me!")")$b
 greetings="$greetings$borderBar$(color $greetingsColor "$(center "$(date +"%A, %d %B %Y, %T")")")$borderBar"
 
 # System information
-read loginFrom loginIP loginDate <<< $(last $me -2 | awk 'NR==2 { print $2,$3,$4 }')
+read loginFrom loginIP loginDate loginTime <<< $(last $me | awk 'NR==2 { print $2,$3,$4,$7 }')
 
 # TTY login
 if [[ $loginDate == - ]]; then
@@ -116,7 +116,7 @@ if [[ $loginDate == - ]]; then
 fi
 
 if [[ $loginDate == *T* ]]; then
-  login="$(date -d $loginDate +"%A, %d %B %Y, %T") ($loginIP)"
+  login="$(date -d $loginDate +"%A, %d %B %Y,") $loginTime ($loginIP)"
 else
   # Not enough logins
   login="None"
