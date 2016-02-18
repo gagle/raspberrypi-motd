@@ -152,8 +152,11 @@ labelwlan1="$borderBar  $(color $statsLabelColor "IP of wlan1...:") $labelwlan1$
 labelusb0="$(extend "$(ifconfig usb0 | grep "inet ad" | cut -f2 -d: | awk '{print $1}')")"
 labelusb0="$borderBar  $(color $statsLabelColor "IP of usb0....:") $labelusb0$borderBar"
 
-label10="$(extend "$(wget -q -O - http://icanhazip.com/ | tail)")"
-label10="$borderBar  $(color $statsLabelColor "IP of WAN.....:") $label10$borderBar"
+labelIPv4="$(extend "$(wget -4 http://icanhazip.com/)")"
+labelIPv4="$borderBar  $(color $statsLabelColor "IPv4 of WAN.....:") $labelIPv4$borderBar"
+
+labelIPv6="$(extend "$(wget -6 http://icanhazip.com/)")"
+labelIPv6="$borderBar  $(color $statsLabelColor "IPv6 of WAN.....:") $labelIPv6$borderBar"
 
 stats="$label1\n$label2\n$label3\n$label4\n$label5\n$labeleth0\n$labelwlan0\n$labelwlan1\n$labelusb0\n$label10"
 
