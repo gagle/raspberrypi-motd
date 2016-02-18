@@ -152,13 +152,13 @@ labelwlan1="$borderBar  $(color $statsLabelColor "IP of wlan1...:") $labelwlan1$
 labelusb0="$(extend "$(ifconfig usb0 | grep "inet ad" | cut -f2 -d: | awk '{print $1}')")"
 labelusb0="$borderBar  $(color $statsLabelColor "IP of usb0....:") $labelusb0$borderBar"
 
-labelIPv4="$(extend "$(wget -4 http://icanhazip.com/)")"
+labelIPv4="$(extend "$(wget -q -O - http://ipv4.icanhazip.com/ | tail)")"
 labelIPv4="$borderBar  $(color $statsLabelColor "IPv4 of WAN.....:") $labelIPv4$borderBar"
 
-labelIPv6="$(extend "$(wget -6 http://icanhazip.com/)")"
+labelIPv6="$(extend "$(wget -q -O - http://ipv6.icanhazip.com/ | tail)")"
 labelIPv6="$borderBar  $(color $statsLabelColor "IPv6 of WAN.....:") $labelIPv6$borderBar"
 
-stats="$label1\n$label2\n$label3\n$label4\n$label5\n$labeleth0\n$labelwlan0\n$labelwlan1\n$labelusb0\n$label10"
+stats="$label1\n$label2\n$label3\n$label4\n$label5\n$labeleth0\n$labelwlan0\n$labelwlan1\n$labelusb0\n$labelIPv4\n$labelIPv6"
 
 
 # Print motd
