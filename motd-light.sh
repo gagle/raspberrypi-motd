@@ -1,4 +1,5 @@
 #!/bin/bash
+# Version: 20160820
 
 clear
 
@@ -8,7 +9,7 @@ function color (){
 
 function extend (){
   local str="$1"
-  let spaces=60-${#1}
+  let spaces=52-${#1}
   while [ $spaces -gt 0 ]; do
     str="$str "
     let spaces=spaces-1
@@ -18,8 +19,8 @@ function extend (){
 
 function center (){
   local str="$1"
-  let spacesLeft=(78-${#1})/2
-  let spacesRight=78-spacesLeft-${#1}
+  let spacesLeft=(70-${#1})/2
+  let spacesRight=70-spacesLeft-${#1}
   while [ $spacesLeft -gt 0 ]; do
     str=" $str"
     let spacesLeft=spacesLeft-1
@@ -81,24 +82,24 @@ headerRaspberryColor=31
 greetingsColor=36
 statsLabelColor=33
 
-borderLine="━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+borderLine="━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 borderTopLine=$(color $borderColor "┏$borderLine┓")
 borderBottomLine=$(color $borderColor "┗$borderLine┛")
 borderBar=$(color $borderColor "┃")
-borderEmptyLine="$borderBar                                                                              $borderBar"
+borderEmptyLine="$borderBar                                                                      $borderBar"
 
 # Header
 header="$borderTopLine\n$borderEmptyLine\n"
-header="$header$borderBar$(color $headerLeafColor "          .~~.   .~~.                                                         ")$borderBar\n"
-header="$header$borderBar$(color $headerLeafColor "         '. \ ' ' / .'                                                        ")$borderBar\n"
-header="$header$borderBar$(color $headerRaspberryColor "          .~ .~~~..~.                      _                          _       ")$borderBar\n"
-header="$header$borderBar$(color $headerRaspberryColor "         : .~.'~'.~. :     ___ ___ ___ ___| |_ ___ ___ ___ _ _    ___|_|      ")$borderBar\n"
-header="$header$borderBar$(color $headerRaspberryColor "        ~ (   ) (   ) ~   |  _| .'|_ -| . | . | -_|  _|  _| | |  | . | |      ")$borderBar\n"
-header="$header$borderBar$(color $headerRaspberryColor "       ( : '~'.~.'~' : )  |_| |__,|___|  _|___|___|_| |_| |_  |  |  _|_|      ")$borderBar\n"
-header="$header$borderBar$(color $headerRaspberryColor "        ~ .~ (   ) ~. ~               |_|                 |___|  |_|          ")$borderBar\n"
-header="$header$borderBar$(color $headerRaspberryColor "         (  : '~' :  )                                                        ")$borderBar\n"
-header="$header$borderBar$(color $headerRaspberryColor "          '~ .~~~. ~'                                                         ")$borderBar\n"
-header="$header$borderBar$(color $headerRaspberryColor "              '~'                                                             ")$borderBar"
+header="$header$borderBar$(color $headerLeafColor "    .~~.   .~~.                                                       ")$borderBar\n"
+header="$header$borderBar$(color $headerLeafColor "   '. \ ' ' / .'                                                      ")$borderBar\n"
+header="$header$borderBar$(color $headerRaspberryColor "    .~ .~~~..~.                       _                          _    ")$borderBar\n"
+header="$header$borderBar$(color $headerRaspberryColor "   : .~.'~'.~. :      ___ ___ ___ ___| |_ ___ ___ ___ _ _    ___|_|   ")$borderBar\n"
+header="$header$borderBar$(color $headerRaspberryColor "  ~ (   ) (   ) ~    |  _| .'|_ -| . | . | -_|  _|  _| | |  | . | |   ")$borderBar\n"
+header="$header$borderBar$(color $headerRaspberryColor " ( : '~'.~.'~' : )   |_| |__,|___|  _|___|___|_| |_| |_  |  |  _|_|   ")$borderBar\n"
+header="$header$borderBar$(color $headerRaspberryColor "  ~ .~ (   ) ~. ~                |_|                 |___|  |_|       ")$borderBar\n"
+header="$header$borderBar$(color $headerRaspberryColor "   (  : '~' :  )                                                      ")$borderBar\n"
+header="$header$borderBar$(color $headerRaspberryColor "    '~ .~~~. ~'                                                       ")$borderBar\n"
+header="$header$borderBar$(color $headerRaspberryColor "        '~'                                                           ")$borderBar"
 
 me=$(whoami)
 
